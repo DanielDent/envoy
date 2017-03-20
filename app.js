@@ -92,7 +92,7 @@ module.exports = function(opts) {
     // Error handlers
     app.use(function(err, req, res, next) {
       console.error(err.stack);
-      res.status(500).send('Something broke!');
+      res.status(500).send({error: 'internal_server_error', reason: 'server error'});
     });
 
     app.listen(app.opts.port);
