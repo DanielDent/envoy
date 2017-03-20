@@ -233,13 +233,25 @@ Envoy supports a subset of the [CouchDB API](http://docs.couchdb.org/en/1.6.1/ap
 
 ### GET /_auth
 
-Allows a remote client to either check whether it is logged in or to establish a login session:
+Allows a remote client to either check whether it is logged in or to establish a login session (credentials are passed using an HTTP Basic Authorization header):
 
 ```sh
 # not logged in - Envoy returns 403 response
 > curl https://myenvoy.mybluemix.net/_auth
 # log in - Envoy returns 200 response and saves cookie
 > curl https://myenvoy.mybluemix.net/_auth --user glynn:password
+{"loggedin":true,"username":"glynn"}
+```
+
+### POST /_auth
+
+Allows a remote client to either check whether it is logged in or to establish a login session (credentials are passed via a JSON-formatted HTTP POST):
+
+```sh
+# not logged in - Envoy returns 403 response
+> curl https://myenvoy.mybluemix.net/_auth
+# log in - Envoy returns 200 response and saves cookie
+> curl -H "Content-Type: application/json" -X POST -d '{"name":"glynn","password":"password"}' https://myenvoy.mybluemix.net/_auth
 {"loggedin":true,"username":"glynn"}
 ```
 

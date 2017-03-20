@@ -1,6 +1,6 @@
 {
   "name": "cloudant-envoy",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A mobile backend shim to Cloudant",
   "contributors": [
     "Stefan Kruger <stefan.kruger@gmail.com>",
@@ -8,7 +8,8 @@
     "Glynn Bird <glynn.bird@gmail.com>",
     "Tom Blench",
     "Simon Metson",
-    "Mike Rhodes"
+    "Mike Rhodes",
+    "Daniel Dent (https://www.danieldent.com/)"
   ],
   "keywords": [
     "backend",
