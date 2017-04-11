@@ -2,13 +2,14 @@
 
 process.env.ENVOY_DATABASE_NAME = 
   (process.env.ENVOY_DATABASE_NAME || 'envoy') +
-	(new Date().getTime());
+    (new Date().getTime());
 
 // enable /_adduser endpoint
 process.env.PRODUCTION = 'false';
 //  process.env.LOG_FORMAT='dev';
 var testsDir = process.env.TESTS_DIR || './tmp';
 var exec = require('child_process').exec;
+var cors = require('./cors-middleware');
 
 function cleanup() {
   // Remove test databases
@@ -19,7 +20,11 @@ exec('mkdir -p ' + testsDir, function () {
   process.on('exit', cleanup);
 });
 
-var app = require('../app')();
+var app = require('../app')({
+  middleware : [
+    cors
+  ]
+});
 
 // ensure server is started before running any tests
 before(function(done) {
